@@ -31,6 +31,14 @@ fn compile() {
     println!("cargo:rustc-link-lib=udev");
 }
 
+#[cfg(target_os = "freebsd")]
+fn compile() {
+    let mut config = gcc::Config::new();
+    config.file("etc/hidapi/libusb/hid.c").include("etc/hidapi/hidapi");
+    config.compile("libhidapi.a");
+    println!("cargo:rustc-link-lib=udev");
+}
+
 #[cfg(target_os = "windows")]
 fn compile() {
     gcc::Config::new()
