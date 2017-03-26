@@ -36,7 +36,7 @@ fn compile() {
     let mut config = gcc::Config::new();
     config.file("etc/hidapi/libusb/hid.c").include("etc/hidapi/hidapi");
     config.compile("libhidapi.a");
-    println!("cargo:rustc-link-lib=udev");
+    println!("cargo:rustc-link-lib=usb");
 }
 
 #[cfg(target_os = "windows")]
